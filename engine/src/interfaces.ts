@@ -1,11 +1,16 @@
-export interface IGameState {
+interface IGameState {
   name: string;
   objects: Array<IGameObject>;
 }
 
-type GameFunction = (state: IGameState) => void;
+export interface IGame {
+  state: IGameState,
+  render: (text: string) => void;
+}
 
-interface IGameObject {
+type GameFunction = (game: IGame) => void;
+
+export interface IGameObject {
   name: string;
   start?: GameFunction;
   update?: GameFunction;

@@ -8,11 +8,11 @@ export const exampleGame: IGameInit = {
       state: {
         age: 0,
       },
-      start() {
-        console.log('hello, my name is', this.name);
+      start({ render }) {
+        render(`hello, my name is ${this.name}`);
       },
-      update(state) {
-        console.log('I am', this.state.age, 'years old');
+      update({ state, render }) {
+        render(`I am ${this.state.age} years old`);
         state.name = `Game: ${this.state.age}`;
         this.state.age += 1;
       },
@@ -22,11 +22,11 @@ export const exampleGame: IGameInit = {
       state: {
         age: 10,
       },
-      start() {
-        console.log('hello, my name is', this.name);
+      start({ render }) {
+        render(`hello, my name is ${this.name}`);
       },
-      update(state) {
-        console.log('I am', this.state.age, 'years old');
+      update({ render, state }) {
+        render(`I am ${this.state.age} years old`);
         state.name = `Game: ${this.state.age}`;
         this.state.age += 1;
       },
