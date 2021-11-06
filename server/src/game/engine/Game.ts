@@ -5,7 +5,7 @@ import IO from './IO';
 
 class Game {
   private engine: GameEngine;
-  private io: IO;
+  public readonly io: IO;
 
   constructor(game: IGameInit = exampleGame) {
     this.io = new IO();

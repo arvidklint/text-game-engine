@@ -4,11 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "lint": "npm run lint:engine && npm run lint:server",
-    "lint:engine": "cd engine && npm run lint",
+    "lint": "npm run lint:server",
     "lint:server": "cd server && npm run lint",
-    "lint:fix": "npm run lint:engine:fix && npm run lint:server:fix",
-    "lint:engine:fix": "cd engine && npm run lint:fix",
+    "lint:fix": "npm run lint:server:fix",
     "lint:server:fix": "cd server && npm run lint:fix",
     "prepare": "husky install"
   },
