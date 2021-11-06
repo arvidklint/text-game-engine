@@ -1,20 +1,22 @@
-interface IGameState {
+import IO from './IO';
+
+export interface IGameState {
   name: string;
   objects: Array<IGameObject>;
 }
 
 export interface IGame {
-  state: IGameState,
-  render: (text: string) => void;
+  state: IGameState;
+  io: IO;
 }
 
-type GameFunction = (game: IGame) => void;
+type GameObjectMethod = (game: IGame) => void;
 
-export interface IGameObject {
+interface IGameObject {
   name: string;
-  start?: GameFunction;
-  update?: GameFunction;
-  end?: GameFunction;
+  start?: GameObjectMethod;
+  update?: GameObjectMethod;
+  end?: GameObjectMethod;
   state: any; // eslint-disable-line @typescript-eslint/no-explicit-any
 }
 

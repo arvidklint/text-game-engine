@@ -1,6 +1,6 @@
 import { IGameInit } from './interfaces';
 
-export const exampleGame: IGameInit = {
+const exampleGame: IGameInit = {
   name: 'Example game',
   objects: [
     {
@@ -8,11 +8,11 @@ export const exampleGame: IGameInit = {
       state: {
         age: 0,
       },
-      start({ render }) {
-        render(`hello, my name is ${this.name}`);
+      start({ io }) {
+        io.render(`hello, my name is ${this.name}`);
       },
-      update({ state, render }) {
-        render(`I am ${this.state.age} years old`);
+      update({ state, io }) {
+        io.render(`I am ${this.state.age} years old`);
         state.name = `Game: ${this.state.age}`;
         this.state.age += 1;
       },
@@ -22,14 +22,16 @@ export const exampleGame: IGameInit = {
       state: {
         age: 10,
       },
-      start({ render }) {
-        render(`hello, my name is ${this.name}`);
+      start({ io }) {
+        io.render(`hello, my name is ${this.name}`);
       },
-      update({ render, state }) {
-        render(`I am ${this.state.age} years old`);
+      update({ io, state }) {
+        io.render(`I am ${this.state.age} years old`);
         state.name = `Game: ${this.state.age}`;
         this.state.age += 1;
       },
     },
   ],
 };
+
+export default exampleGame;
