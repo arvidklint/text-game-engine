@@ -4,7 +4,14 @@ import './styles/index.css';
 
 const socket = io('http://localhost:3000');
 
-const outputElement = document.querySelector('#output');
+const outputElement: HTMLElement | null = document.querySelector('#output');
+const inputElement: HTMLElement | null = document.querySelector('#input');
+
+function scrollToBottom() {
+  outputElement?.scrollTo({
+    top: outputElement.scrollHeight,
+  });
+}
 
 socket.on('connect', function () {
   console.log('Connected');
@@ -14,6 +21,8 @@ socket.on('output', function (data) {
   const textElement = document.createElement('p');
   textElement.innerText = data;
   outputElement?.appendChild(textElement);
+
+  scrollToBottom();
 });
 
 socket.on('exception', function (data) {
@@ -23,3 +32,8 @@ socket.on('exception', function (data) {
 socket.on('disconnect', function () {
   console.log('Disconnected');
 });
+
+(function () {
+  scrollToBottom();
+  inputElement?.focus();
+})();

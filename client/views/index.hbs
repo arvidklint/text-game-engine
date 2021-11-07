@@ -5,14 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Text Game Engine</title>
   </head>
-  <body class="bg-black text-white">
+  <body
+    class="box-border h-screen w-screen text-white bg-gradient-to-r from-indigo-50 to-indigo-100"
+  >
     <main>
-      <div id="output">
-        {{#each initialOutput}}
-          <p>{{this}}</p>
-        {{/each}}
+      <div class="h-full w-full max-h-full flex flex-col p-4">
+        <div
+          id="output"
+          class="flex-grow rounded bg-gray-900 overflow-y-scroll w-full p-2 mb-2 shadow"
+        >
+          {{#each initialOutput}}
+            <p>{{this}}</p>
+          {{/each}}
+        </div>
+        <input
+          id="input"
+          type="text"
+          class="w-full bg-gray-900 rounded p-2 shadow focus:shadow-xl hover:shadow-lg"
+        />
       </div>
-      <input id="input" type="text" />
     </main>
   </body>
 </html>
