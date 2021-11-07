@@ -16,6 +16,9 @@ const exampleGame: IGameInit = {
         state.name = `Game: ${this.state.age}`;
         this.state.age += 1;
       },
+      input({ io }, text) {
+        io.render(`You said: ${text}`);
+      },
     },
   ],
 };

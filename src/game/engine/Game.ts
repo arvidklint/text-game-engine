@@ -12,6 +12,8 @@ class Game {
 
     this.engine = new GameEngine(game, this.io);
 
+    this.io.addInputListener((text) => this.engine.input(text));
+
     this.engine.start();
   }
 }

@@ -27,7 +27,7 @@ class GameEngine {
     };
   }
 
-  public start() {
+  public start(): void {
     this.gameState.objects.forEach((obj) => {
       if (obj.start) {
         obj.start(this.game);
@@ -36,7 +36,15 @@ class GameEngine {
     this.update();
   }
 
-  private update() {
+  public input(text: string): void {
+    this.gameState.objects.forEach((obj) => {
+      if (obj.input) {
+        obj.input(this.game, text);
+      }
+    });
+  }
+
+  private update(): void {
     this.gameState.objects.forEach((obj) => {
       if (obj.update) {
         obj.update(this.game);

@@ -1,7 +1,9 @@
 import {
   ConnectedSocket,
+  MessageBody,
   OnGatewayConnection,
   OnGatewayDisconnect,
+  SubscribeMessage,
   WebSocketGateway,
   WebSocketServer,
 } from '@nestjs/websockets';
@@ -24,5 +26,10 @@ export class GameGateway implements OnGatewayConnection, OnGatewayDisconnect {
   handleDisconnect(socket: Socket) {
     this.gameService.abortSubscriptionToOutput(socket);
     console.log('disconnect', socket.id);
+  }
+
+  @SubscribeMessage('input')
+  handleEvent(@MessageBody() input: string): void {
+    this.gameService.input(input);
   }
 }

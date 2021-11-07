@@ -28,4 +28,8 @@ export class GameService {
       sockets.splice(index, 1);
     }
   }
+
+  input(input: string): void {
+    game.io.input(input);
+  }
 }

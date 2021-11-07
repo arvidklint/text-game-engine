@@ -17,6 +17,7 @@ interface IGameObject {
   start?: GameObjectMethod;
   update?: GameObjectMethod;
   end?: GameObjectMethod;
+  input?: (game: IGame, text: string) => void;
   state: any; // eslint-disable-line @typescript-eslint/no-explicit-any
 }
 
