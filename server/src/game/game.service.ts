@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { Observable, Subscriber } from 'rxjs';
 import { Socket } from 'socket.io';
 
 import Game from './engine/Game';

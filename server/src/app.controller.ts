@@ -1,5 +1,4 @@
 import { Controller, Get, Render } from '@nestjs/common';
-import { AppService } from './app.service';
 import { GameService } from './game/game.service';
 
 interface IndexProps {
