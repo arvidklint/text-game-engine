@@ -15,7 +15,7 @@ game.io.addOutpuListener((text) => {
 @Injectable()
 export class GameService {
   getInitialOutput(): Array<string> {
-    return game.io.getOutput();
+    return game.io.getOutput().slice(-1000);
   }
 
   subscribeToOutput(socket: Socket): void {
