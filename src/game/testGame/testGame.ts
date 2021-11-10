@@ -41,7 +41,6 @@ const exampleGame: IGameInit = {
     },
     {
       name: 'Old man',
-      state: {},
       input({ io }, input) {
         if (input.command === COMMANDS.SHOUT) {
           io.render("Ah! Don't shout at me...");
@@ -50,7 +49,6 @@ const exampleGame: IGameInit = {
     },
     {
       name: 'Listening man',
-      state: {},
       input({ io }, input) {
         if (input.command === COMMANDS.SAY_TO) {
           io.render(`You said "${input.text}" to ${this.name}`);
@@ -59,7 +57,6 @@ const exampleGame: IGameInit = {
     },
     {
       name: 'pong',
-      state: {},
       async input({ io, sleep }, input) {
         if (input.command !== COMMANDS.PING) return;
 

@@ -19,7 +19,7 @@ export interface IGameObject {
   update?: GameObjectMethod;
   end?: GameObjectMethod;
   input?: (game: IGame, text: IInput) => void;
-  state: any; // eslint-disable-line @typescript-eslint/no-explicit-any
+  state?: any; // eslint-disable-line @typescript-eslint/no-explicit-any
 }
 
 type GameInitMethod = (io: IO) => void;
