@@ -8,6 +8,7 @@ export interface IGameState {
 export interface IGame {
   state: IGameState;
   io: IO;
+  sleep: (ms: number) => Promise<unknown>;
 }
 
 type GameObjectMethod = (game: IGame) => void;

@@ -1,6 +1,7 @@
 import { IGameInit, IGameState, IGame } from './game.interfaces';
 
 import { IInput, IO } from './io';
+import { sleep } from './logic.utils';
 
 function createGameState(init: IGameInit): IGameState {
   const state: IGameState = {
@@ -28,6 +29,7 @@ class GameEngine {
     return {
       state: this.gameState,
       io: this.io,
+      sleep,
     };
   }
 

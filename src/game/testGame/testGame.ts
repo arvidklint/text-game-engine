@@ -9,6 +9,7 @@ export const COMMANDS = {
   EAST: 'east',
   SOUTH: 'south',
   WEST: 'west',
+  PING: 'ping',
 };
 
 const exampleGame: IGameInit = {
@@ -54,6 +55,19 @@ const exampleGame: IGameInit = {
         if (input.command === COMMANDS.SAY_TO) {
           io.render(`You said "${input.text}" to ${this.name}`);
         }
+      },
+    },
+    {
+      name: 'pong',
+      state: {},
+      async input({ io, sleep }, input) {
+        if (input.command !== COMMANDS.PING) return;
+
+        io.render('ping!...');
+
+        const ms = Math.floor(Math.random() * 5000);
+        await sleep(ms);
+        io.render(`pong! (${Math.round(ms * 100) / 100}ms)`);
       },
     },
     ...movement,
