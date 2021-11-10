@@ -6,7 +6,7 @@ import { sleep } from './logic.utils';
 function createGameState(init: IGameInit): IGameState {
   const state: IGameState = {
     name: init.name,
-    objects: init.objects || [],
+    entities: init.entities || [],
   };
 
   return state;
@@ -34,7 +34,7 @@ class GameEngine {
   }
 
   public start(): void {
-    this.gameState.objects.forEach((obj) => {
+    this.gameState.entities.forEach((obj) => {
       if (obj.start) {
         obj.start(this.game);
       }
@@ -43,7 +43,7 @@ class GameEngine {
   }
 
   public input(input: IInput): void {
-    this.gameState.objects.forEach((obj) => {
+    this.gameState.entities.forEach((obj) => {
       if (obj.input) {
         obj.input(this.game, input);
       }
@@ -51,7 +51,7 @@ class GameEngine {
   }
 
   private update(): void {
-    this.gameState.objects.forEach((obj) => {
+    this.gameState.entities.forEach((obj) => {
       if (obj.update) {
         obj.update(this.game);
       }

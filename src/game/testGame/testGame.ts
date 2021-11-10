@@ -19,7 +19,7 @@ const exampleGame: IGameInit = {
       io.addCommand(command);
     });
   },
-  objects: [
+  entities: [
     {
       name: 'First game object',
       state: {

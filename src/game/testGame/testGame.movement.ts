@@ -1,7 +1,7 @@
-import { IGameObject } from '../engine/game.interfaces';
+import { IGameEntity } from '../engine/game.interfaces';
 import { COMMANDS } from './testGame';
 
-export const movement: Array<IGameObject> = [
+export const movement: Array<IGameEntity> = [
   {
     name: 'move north',
     input({ io }, input) {

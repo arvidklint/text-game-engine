@@ -2,7 +2,7 @@ import { IInput, IO } from './io';
 
 export interface IGameState {
   name: string;
-  objects: Array<IGameObject>;
+  entities: Array<IGameEntity>;
 }
 
 export interface IGame {
@@ -13,7 +13,7 @@ export interface IGame {
 
 type GameObjectMethod = (game: IGame) => void;
 
-export interface IGameObject {
+export interface IGameEntity {
   name: string;
   start?: GameObjectMethod;
   update?: GameObjectMethod;
@@ -27,5 +27,5 @@ type GameInitMethod = (io: IO) => void;
 export interface IGameInit {
   name: string;
   init?: GameInitMethod;
-  objects?: Array<IGameObject>;
+  entities?: Array<IGameEntity>;
 }
