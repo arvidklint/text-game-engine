@@ -1,7 +1,7 @@
 import GameEngine from './Engine';
-import exampleGame from './exampleGame';
-import { IGameInit } from './interfaces';
-import IO from './IO';
+import exampleGame from '../testGame/testGame';
+import { IGameInit } from './game.interfaces';
+import { IO } from './io/IO';
 
 class Game {
   private engine: GameEngine;
@@ -12,7 +12,7 @@ class Game {
 
     this.engine = new GameEngine(game, this.io);
 
-    this.io.addInputListener((text) => this.engine.input(text));
+    this.io.addInputListener((input) => this.engine.input(input));
 
     this.engine.start();
   }

@@ -1,4 +1,4 @@
-import IO from './IO';
+import { IInput, IO } from './io';
 
 export interface IGameState {
   name: string;
@@ -12,16 +12,19 @@ export interface IGame {
 
 type GameObjectMethod = (game: IGame) => void;
 
-interface IGameObject {
+export interface IGameObject {
   name: string;
   start?: GameObjectMethod;
   update?: GameObjectMethod;
   end?: GameObjectMethod;
-  input?: (game: IGame, text: string) => void;
+  input?: (game: IGame, text: IInput) => void;
   state: any; // eslint-disable-line @typescript-eslint/no-explicit-any
 }
 
+type GameInitMethod = (io: IO) => void;
+
 export interface IGameInit {
   name: string;
+  init?: GameInitMethod;
   objects?: Array<IGameObject>;
 }

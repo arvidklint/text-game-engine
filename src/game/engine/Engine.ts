@@ -1,6 +1,6 @@
-import { IGameInit, IGameState, IGame } from './interfaces';
+import { IGameInit, IGameState, IGame } from './game.interfaces';
 
-import IO from './IO';
+import { IInput, IO } from './io';
 
 function createGameState(init: IGameInit): IGameState {
   const state: IGameState = {
@@ -18,6 +18,10 @@ class GameEngine {
   constructor(init: IGameInit, io: IO) {
     this.gameState = createGameState(init);
     this.io = io;
+
+    if (init.init) {
+      init.init(this.io);
+    }
   }
 
   get game(): IGame {
@@ -36,10 +40,10 @@ class GameEngine {
     this.update();
   }
 
-  public input(text: string): void {
+  public input(input: IInput): void {
     this.gameState.objects.forEach((obj) => {
       if (obj.input) {
-        obj.input(this.game, text);
+        obj.input(this.game, input);
       }
     });
   }
