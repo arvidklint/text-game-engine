@@ -21,17 +21,13 @@ const exampleGame: IGameInit = {
   },
   entities: [
     {
-      name: 'First game object',
-      state: {
-        age: 0,
-      },
+      age: 0,
       start({ io }) {
-        io.render(`hello, my name is ${this.name}`);
+        io.render('This is the start of the game');
       },
-      update({ state, io }) {
-        io.render(`I am ${this.state.age} years old`);
-        state.name = `Game: ${this.state.age}`;
-        this.state.age += 1;
+      update({ io }) {
+        io.render(`I am ${this.age} years old`);
+        this.age += 1;
       },
       input({ io }, input) {
         if (input.command === COMMANDS.SAY) {
@@ -40,7 +36,6 @@ const exampleGame: IGameInit = {
       },
     },
     {
-      name: 'Old man',
       input({ io }, input) {
         if (input.command === COMMANDS.SHOUT) {
           io.render("Ah! Don't shout at me...");
@@ -48,15 +43,13 @@ const exampleGame: IGameInit = {
       },
     },
     {
-      name: 'Listening man',
       input({ io }, input) {
         if (input.command === COMMANDS.SAY_TO) {
-          io.render(`You said "${input.text}" to ${this.name}`);
+          io.render('You said "${input.text}"');
         }
       },
     },
     {
-      name: 'pong',
       async input({ io, sleep }, input) {
         if (input.command !== COMMANDS.PING) return;
 

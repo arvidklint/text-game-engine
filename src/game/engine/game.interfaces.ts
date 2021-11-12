@@ -14,12 +14,11 @@ export interface IGame {
 type GameObjectMethod = (game: IGame) => void;
 
 export interface IGameEntity {
-  name: string;
   start?: GameObjectMethod;
   update?: GameObjectMethod;
   end?: GameObjectMethod;
   input?: (game: IGame, text: IInput) => void;
-  state?: any; // eslint-disable-line @typescript-eslint/no-explicit-any
+  [key: string]: any;
 }
 
 type GameInitMethod = (io: IO) => void;

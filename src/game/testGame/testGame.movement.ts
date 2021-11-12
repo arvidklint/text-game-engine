@@ -3,7 +3,6 @@ import { COMMANDS } from './testGame';
 
 export const movement: Array<IGameEntity> = [
   {
-    name: 'move north',
     input({ io }, input) {
       if (input.command === COMMANDS.NORTH) {
         io.render('You tried to go north');
@@ -11,7 +10,6 @@ export const movement: Array<IGameEntity> = [
     },
   },
   {
-    name: 'move east',
     input({ io }, input) {
       if (input.command === COMMANDS.EAST) {
         io.render('You tried to go east');
@@ -19,7 +17,6 @@ export const movement: Array<IGameEntity> = [
     },
   },
   {
-    name: 'move south',
     input({ io }, input) {
       if (input.command === COMMANDS.SOUTH) {
         io.render('You tried to go south');
@@ -27,7 +24,6 @@ export const movement: Array<IGameEntity> = [
     },
   },
   {
-    name: 'move west',
     input({ io }, input) {
       if (input.command === COMMANDS.WEST) {
         io.render('You tried to go west');
