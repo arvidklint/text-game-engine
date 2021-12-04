@@ -1,4 +1,4 @@
-import { IGameInit } from '../engine/game.interfaces';
+import { IGameInit } from '../engine/game/game.interfaces';
 import { movement } from './testGame.movement';
 
 export const COMMANDS = {
@@ -14,9 +14,9 @@ export const COMMANDS = {
 
 const exampleGame: IGameInit = {
   name: 'Example game',
-  init(io) {
+  init(game) {
     Object.values(COMMANDS).forEach((command) => {
-      io.addCommand(command);
+      game.addCommand(command);
     });
   },
   entities: [

@@ -1,6 +1,2 @@
-export type Command = string | false;
-
-export interface IInput {
-  command: Command;
-  text: string;
-}
+export type OutputListener = (text: string) => void;
+export type InputListener = (text: string) => void;

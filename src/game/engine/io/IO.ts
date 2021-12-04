@@ -1,18 +1,14 @@
-import { IInput } from './io.interfaces';
-import { extractCommand } from './io.utils';
+import { InputListener, OutputListener } from '.';
 
-type OutputListener = (text: string) => void;
-type InputListener = (text: IInput) => void;
-
-export class IO {
+export abstract class IO {
   private output: Array<string> = [];
   private outputListeners: Array<OutputListener> = [];
   private inputListeners: Array<InputListener> = [];
-  private commands: Array<string> = [];
 
-  public render(text: string): void {
-    this.output.push(text);
-    this.outputListeners.forEach((listener) => {
+  public abstract emit(text: string): void;
+
+  public input(text: string): void {
+    this.inputListeners.forEach((listener) => {
       listener(text);
     });
   }
@@ -25,28 +21,15 @@ export class IO {
     this.outputListeners.push(listener);
   }
 
-  public input(rawTextInput: string): void {
-    const [command, text] = extractCommand(rawTextInput, this.commands);
-    const input: IInput = {
-      command,
-      text,
-    };
-    this.inputListeners.forEach((listener) => {
-      listener(input);
-    });
+  public removeOutputListener(listener: OutputListener): void {
+    this.outputListeners = this.inputListeners.filter((l) => l !== listener);
   }
 
   public addInputListener(listener: InputListener): void {
     this.inputListeners.push(listener);
   }
 
-  public addCommand(command: string): void {
-    this.commands.push(command);
-
-    // Sort by length since we treat the longest command as the
-    // most specific and should therefore be first to match
-    this.commands.sort((a, b) => {
-      return a.length > b.length ? -1 : 1;
-    });
+  public removeInputListener(listener: InputListener): void {
+    this.inputListeners = this.inputListeners.filter((l) => l !== listener);
   }
 }

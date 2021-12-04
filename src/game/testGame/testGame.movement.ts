@@ -1,32 +1,32 @@
-import { IGameEntity } from '../engine/game.interfaces';
+import { IGameEntity } from '../engine/game/game.interfaces';
 import { COMMANDS } from './testGame';
 
 export const movement: Array<IGameEntity> = [
   {
-    input({ io }, input) {
+    input(_, input, player) {
       if (input.command === COMMANDS.NORTH) {
-        io.render('You tried to go north');
+        player.io.emit('You tried to go north');
       }
     },
   },
   {
-    input({ io }, input) {
+    input(_, input, player) {
       if (input.command === COMMANDS.EAST) {
-        io.render('You tried to go east');
+        player.io.emit('You tried to go east');
       }
     },
   },
   {
-    input({ io }, input) {
+    input(_, input, player) {
       if (input.command === COMMANDS.SOUTH) {
-        io.render('You tried to go south');
+        player.io.emit('You tried to go south');
       }
     },
   },
   {
-    input({ io }, input) {
+    input(_, input, player) {
       if (input.command === COMMANDS.WEST) {
-        io.render('You tried to go west');
+        player.io.emit('You tried to go west');
       }
     },
   },

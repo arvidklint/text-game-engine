@@ -19,6 +19,7 @@ export class GameGateway implements OnGatewayConnection, OnGatewayDisconnect {
   constructor(private readonly gameService: GameService) {}
 
   handleConnection(@ConnectedSocket() socket: Socket) {
+    this.gameService.connectPlayer(socket);
     this.gameService.subscribeToOutput(socket);
     console.log('connected', socket.id);
   }

@@ -1,9 +1,9 @@
-import { IGameInit, IGameState, IGame } from './game.interfaces';
+import { IEngineInit } from './engine.interfaces';
+import { IInput, IGameState, IGame } from './game/game.interfaces';
 
-import { IInput, IO } from './io';
 import { sleep } from './logic.utils';
 
-function createGameState(init: IGameInit): IGameState {
+function createGameState(init: IEngineInit): IGameState {
   const state: IGameState = {
     name: init.name,
     entities: init.entities || [],
@@ -12,16 +12,15 @@ function createGameState(init: IGameInit): IGameState {
   return state;
 }
 
-class GameEngine {
+class Engine {
   private gameState: IGameState;
-  private io: IO;
+  private commands: Array<string> = [];
 
-  constructor(init: IGameInit, io: IO) {
+  constructor(init: IEngineInit) {
     this.gameState = createGameState(init);
-    this.io = io;
 
     if (init.init) {
-      init.init(this.io);
+      init.init(this);
     }
   }
 
@@ -58,6 +57,16 @@ class GameEngine {
     });
     setTimeout(this.update.bind(this), 1000);
   }
+
+  public addCommand(command: string): void {
+    this.commands.push(command);
+
+    // Sort by length since we treat the longest command as the
+    // most specific and should therefore be first to match
+    this.commands.sort((a, b) => {
+      return a.length > b.length ? -1 : 1;
+    });
+  }
 }
 
-export default GameEngine;
+export default Engine;

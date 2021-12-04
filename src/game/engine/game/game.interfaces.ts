@@ -1,4 +1,5 @@
-import { IInput, IO } from './io';
+import { IO } from '../io';
+import { Player } from '../player/Player';
 
 export interface IGameState {
   name: string;
@@ -17,14 +18,13 @@ export interface IGameEntity {
   start?: GameObjectMethod;
   update?: GameObjectMethod;
   end?: GameObjectMethod;
-  input?: (game: IGame, text: IInput) => void;
+  input?: (game: IGame, text: IInput, player?: Player | undefined) => void;
   [key: string]: any;
 }
 
-type GameInitMethod = (io: IO) => void;
+export type Command = string | false;
 
-export interface IGameInit {
-  name: string;
-  init?: GameInitMethod;
-  entities?: Array<IGameEntity>;
+export interface IInput {
+  command: Command;
+  text: string;
 }
